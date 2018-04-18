@@ -35,7 +35,7 @@ class LoadingDialog : AppCompatDialogFragment() {
         super.onStart()
         val dialog = dialog
 
-
+        dialog.setCanceledOnTouchOutside(false)//设置点击Dialog外部任意区域关闭Dialog
         val dm = DisplayMetrics()
         activity.windowManager.defaultDisplay.getMetrics(dm)
         dialog.window!!.setLayout((dm.widthPixels * 0.2).toInt(), (dm.widthPixels * 0.2).toInt())
@@ -44,6 +44,6 @@ class LoadingDialog : AppCompatDialogFragment() {
         val params = dialog.window!!.attributes
         params.dimAmount = 0f
         dialog.window!!.attributes = params
-        dialog.setCanceledOnTouchOutside(false)//设置点击Dialog外部任意区域关闭Dialog
+
     }
 }
