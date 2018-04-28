@@ -8,6 +8,7 @@ import android.view.View
 
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.juslt.common.R
 import org.jetbrains.anko.find
@@ -19,25 +20,44 @@ class CustomToolBar @JvmOverloads constructor(context: Context, attrs: Attribute
     private val tvTitle by lazy { find<TextView>(R.id.tv_title) }
     private val ivBack by lazy { find<ImageView>(R.id.iv_back) }
     private val vDivider by lazy { find<ImageView>(R.id.iv_divider) }
+    private val ivRight by lazy { find<ImageView>(R.id.iv_right) }
+    private val tvRightText by lazy { find<TextView>(R.id.tv_right_text) }
+
+    private val llRightContainer by lazy { find<LinearLayout>(R.id.ll_right) }
     init {
         LayoutInflater.from(context).inflate(R.layout.v_toolbar, this)
 
         val typeArray = context.obtainStyledAttributes(attrs, R.styleable.CustomToolBar)
-        val titleName = typeArray.getString(R.styleable.CustomToolBar_title_name)
-        val titleColor = typeArray.getColor(R.styleable.CustomToolBar_title_name_color, Color.parseColor("#4c4c4c"))
-        val icBack = typeArray.getResourceId(R.styleable.CustomToolBar_left_icon,R.mipmap.ic_back)
-        val isShowDivider = typeArray.getBoolean(R.styleable.CustomToolBar_is_show_divider,false)
-        val background = typeArray.getColor(R.styleable.CustomToolBar_background_color,Color.parseColor("#ffffff"))
+        val titleNameStyle = typeArray.getString(R.styleable.CustomToolBar_title_name)
+        val titleColorStyle = typeArray.getColor(R.styleable.CustomToolBar_title_name_color, Color.parseColor("#4c4c4c"))
+        val icBackStyle = typeArray.getResourceId(R.styleable.CustomToolBar_left_icon,R.mipmap.ic_back)
+        val rightTextStyle = typeArray.getString(R.styleable.CustomToolBar_right_text)
+        val rightTextColorStyle = typeArray.getColor(R.styleable.CustomToolBar_right_text_color, Color.parseColor("#4c4c4c"))
+        val rightIconStyle = typeArray.getResourceId(R.styleable.CustomToolBar_right_icon,1)
 
-        tvTitle.text = titleName
-        tvTitle.setTextColor(titleColor)
-        ivBack.setImageResource(icBack)
-        if(isShowDivider){
+        val isShowDividerStyle = typeArray.getBoolean(R.styleable.CustomToolBar_is_show_divider,false)
+        val backgroundStyle = typeArray.getColor(R.styleable.CustomToolBar_background_color,Color.parseColor("#ffffff"))
+
+        tvTitle.text = titleNameStyle
+        tvTitle.setTextColor(titleColorStyle)
+        ivBack.setImageResource(icBackStyle)
+        setBackgroundColor(backgroundStyle)
+
+        tvRightText.text = rightTextStyle
+        tvRightText.setTextColor(rightTextColorStyle)
+        /** 显示右侧icon*/
+        if(rightIconStyle==1){
+            ivRight.visibility= View.GONE
+        }else{
+            ivRight.setImageResource(rightIconStyle)
+        }
+        /** 底部分界线*/
+        if(isShowDividerStyle){
             vDivider.visibility = View.VISIBLE
         }else{
             vDivider.visibility = View.GONE
         }
-        setBackgroundColor(background)
+
     }
 
     fun setTitleText(title:String){
@@ -46,4 +66,9 @@ class CustomToolBar @JvmOverloads constructor(context: Context, attrs: Attribute
     fun setBackListener(listener: OnClickListener) {
         ivBack.setOnClickListener(listener)
     }
+    fun setRightOptionListener(listener:OnClickListener){
+        llRightContainer.setOnClickListener { listener }
+    }
+
+
 }
