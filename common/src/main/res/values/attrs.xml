@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomToolBar">
+        <attr name="left_icon" format="reference|integer"/>
+        <attr name="title_name" format="string"/>
+        <attr name="title_name_color" format="color"/>
+        <attr name="is_show_divider" format="boolean"/>
+        <attr name="background_color" format="color"/>
+    </declare-styleable>
+</resources>
