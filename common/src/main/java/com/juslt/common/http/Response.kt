@@ -9,7 +9,7 @@ class Response(
         val url: String,
         val responseCode: Int,
         val responseMessage: String,
-        val header:Map<String,List<String>>,
+        val header:Map<String,List<String>>?=null,
         val contentEncoding: String,
         val contentLength: Int,
         val data: String?=null,
