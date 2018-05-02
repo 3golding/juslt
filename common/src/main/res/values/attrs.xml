@@ -9,6 +9,7 @@
         <attr name="right_icon" format="reference|integer"/>
 
         <attr name="is_show_divider" format="boolean"/>
+        <attr name="is_show_back_icon" format="boolean"/>
         <attr name="background_color" format="color"/>
     </declare-styleable>
 </resources>

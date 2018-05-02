@@ -37,7 +37,7 @@ class CustomToolBar @JvmOverloads constructor(context: Context, attrs: Attribute
 
         val isShowDividerStyle = typeArray.getBoolean(R.styleable.CustomToolBar_is_show_divider,false)
         val backgroundStyle = typeArray.getColor(R.styleable.CustomToolBar_background_color,Color.parseColor("#ffffff"))
-
+        val isShowBackIconStyle = typeArray.getBoolean(R.styleable.CustomToolBar_is_show_back_icon,true)
         tvTitle.text = titleNameStyle
         tvTitle.setTextColor(titleColorStyle)
         ivBack.setImageResource(icBackStyle)
@@ -58,6 +58,11 @@ class CustomToolBar @JvmOverloads constructor(context: Context, attrs: Attribute
             vDivider.visibility = View.GONE
         }
 
+        if(isShowBackIconStyle){
+            ivBack.visibility = View.VISIBLE
+        }else{
+            ivBack.visibility = View.GONE
+        }
     }
 
     fun setTitleText(title:String){
@@ -67,8 +72,9 @@ class CustomToolBar @JvmOverloads constructor(context: Context, attrs: Attribute
         ivBack.setOnClickListener(listener)
     }
     fun setRightOptionListener(listener:OnClickListener){
-        llRightContainer.setOnClickListener { listener }
+        llRightContainer.setOnClickListener(listener )
     }
+
 
 
 }
