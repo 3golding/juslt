@@ -7,4 +7,6 @@
     <color name="colorYellow">#f7833d</color>
     <color name="colorGreen">#3dcc85</color>
     <color name="color_fdb741">#fdb741</color>
+
+    <color name="color_gray">#e6e6e6</color>
 </resources>
