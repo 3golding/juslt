@@ -27,6 +27,7 @@ object SizeUtil {
         val fontScale = context.resources.displayMetrics.scaledDensity
         return (spValue * fontScale + 0.5f).toInt()
     }
+
     fun getDisplayMetrics(activity: Activity): DisplayMetrics {
         val displayMetrics = DisplayMetrics()
         activity.windowManager.defaultDisplay.getMetrics(displayMetrics)

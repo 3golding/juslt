@@ -3,6 +3,7 @@ package com.juslt.common.http
 import android.util.Log
 import com.google.gson.Gson
 
+
 /**
  * Created by phelps on 2018/1/28 0028.
  */
@@ -23,5 +24,6 @@ inline fun Response.parseError(crossinline f:(t: ErrorVo)->Unit) : Response{
 
 fun Response.log() : Response{
     Log.d("log_http",toString())
+
     return this
 }
