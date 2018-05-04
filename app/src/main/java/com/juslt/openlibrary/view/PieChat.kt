@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 
 /**
@@ -43,12 +44,14 @@ class PieChat @JvmOverloads constructor(context: Context, attributeSet: Attribut
         }
 //        invalidate()
     }
+
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         //画布背景
         canvas!!.drawColor(Color.WHITE)
 
-        val arcRectf= RectF(left.toFloat(), top.toFloat(), right.toFloat(), bottom.toFloat())
+        Log.e("===", "left:$left,right:$right,top:$top,bottom:$bottom")
+        val arcRectf= RectF(0f, 0f, width.toFloat(), height.toFloat())
 
         var curPer =0f
         var percentage = 0f
