@@ -34,6 +34,7 @@ class LoadingDialog : AppCompatDialogFragment() {
     override fun onStart() {
         super.onStart()
         val dialog = dialog
+
         dialog.setCanceledOnTouchOutside(false)//设置点击Dialog外部任意区域关闭Dialog
 
         val dm = DisplayMetrics()

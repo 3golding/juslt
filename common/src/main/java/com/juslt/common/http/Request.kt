@@ -1,7 +1,5 @@
 package com.juslt.common.http
 
-import com.juslt.common.http.IDownload
-import com.juslt.common.http.Response
 import java.io.File
 import java.io.OutputStream
 import java.net.HttpURLConnection
@@ -48,15 +46,20 @@ class Request(
     }
 
     private fun execPost() : Response {
-        val conn = genConnection(URL(url),method)
+        val conn = genConnection(URL(url), method)
         //post params
         val isMultipart = bodyParams.any { it.second is File }
-        if(isMultipart){
-            processMultipart(conn)
-        }else{
-            processPostForm(conn)
-        }
 
+        try {
+            if (isMultipart) {
+                processMultipart(conn)
+            } else {
+                processPostForm(conn)
+            }
+        } catch (e: Exception) {
+            //io exception, connect timeout  etc.
+            return readResponse(conn)
+        }
         return readResponse(conn)
     }
 
@@ -71,10 +74,15 @@ class Request(
             }
         }
 
-        val os = conn.outputStream
-        os.write(paramStr.toString().toByteArray())
-        os.flush()
-        os.close()
+        try {
+            val os = conn.outputStream
+            os.write(paramStr.toString().toByteArray())
+            os.flush()
+            os.close()
+        }catch (e: Exception){
+            throw e
+        }
+
     }
 
     private fun processMultipart(conn: HttpURLConnection){

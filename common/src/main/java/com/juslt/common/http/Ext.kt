@@ -35,6 +35,18 @@ fun Request.readResponse(conn: HttpURLConnection) : Response{
         }
     } catch (ex: IOException) {
         readSuccess = false
+        return Response(
+                readSuccess,
+                downloadPath,
+                url,
+                -1,
+                "",
+                null,
+                "",
+                -1,
+                ex.message,
+                toString()
+        )
     }finally {
         dataStream?.close()
     }
