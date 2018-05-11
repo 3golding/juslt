@@ -38,6 +38,8 @@ class CustomToolBar @JvmOverloads constructor(context: Context, attrs: Attribute
         val isShowDividerStyle = typeArray.getBoolean(R.styleable.CustomToolBar_is_show_divider,false)
         val backgroundStyle = typeArray.getColor(R.styleable.CustomToolBar_background_color,Color.parseColor("#ffffff"))
         val isShowBackIconStyle = typeArray.getBoolean(R.styleable.CustomToolBar_is_show_back_icon,true)
+        typeArray.recycle()
+
         tvTitle.text = titleNameStyle
         tvTitle.setTextColor(titleColorStyle)
         ivBack.setImageResource(icBackStyle)
