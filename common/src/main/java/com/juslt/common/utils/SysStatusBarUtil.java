@@ -60,7 +60,7 @@ public class SysStatusBarUtil {
             activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             setBarColor(activity, ContextCompat.getColor(activity, R.color.color_white));
         }else {
-            setBarColor(activity, ContextCompat.getColor(activity,R.color.gray));
+            setBarColor(activity, ContextCompat.getColor(activity,R.color.blue));
         }
 
     }
