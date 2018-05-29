@@ -1,4 +1,4 @@
-package com.juslt.common.widget
+package com.juslt.common.widget.viewpager
 
 import android.content.Context
 import android.util.AttributeSet
@@ -12,7 +12,7 @@ import com.juslt.common.R
  * Created by wx on 2017/9/1.
  */
 
-class RoundNavigationIndicator @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : LinearLayout(context, attrs, defStyleAttr) {
+class ViewPagerIndicator @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : LinearLayout(context, attrs, defStyleAttr) {
     private var mContext: Context? = null
     private var selected: Int = 0
 
