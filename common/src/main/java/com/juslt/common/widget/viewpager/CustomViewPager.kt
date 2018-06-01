@@ -6,6 +6,7 @@ import android.os.Message
 import android.support.v4.view.ViewPager
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -23,7 +24,7 @@ class CustomViewPager @JvmOverloads constructor(context:Context,attributeSet: At
     val BANNER_PAUSE=200
     val BANNER_RESUME=300
 
-    val imageList = ArrayList<ImageView>()
+    val imageList = ArrayList<View>()
     val viewPager by lazy { this.find<ViewPager>(R.id.view_pager) }
     val indicator by lazy { this.find<ViewPagerIndicator>(R.id.indicator) }
     val handler by lazy { PagerHandler(WeakReference(this)) }
@@ -38,7 +39,7 @@ class CustomViewPager @JvmOverloads constructor(context:Context,attributeSet: At
     }
     fun update(any: Any){
         imageList.clear()
-        imageList.addAll(any as ArrayList<ImageView>)
+        imageList.addAll(any as ArrayList<View>)
         if(imageList.size>1){
             indicator.removeAllViews()
             indicator.initPointNum(imageList.size)
@@ -50,14 +51,14 @@ class CustomViewPager @JvmOverloads constructor(context:Context,attributeSet: At
         indicator.setSelected((Int.MAX_VALUE/2)%imageList.size)
 
         if(isHaveTransformer){
-            viewPager.pageMargin= SizeUtil.dip2px(context,20f) //设置page间间距
+            viewPager.pageMargin= SizeUtil.dip2px(context,0f) //设置page间间距
             val params = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,FrameLayout.LayoutParams.WRAP_CONTENT)
-            params.setMargins(SizeUtil.dip2px(context,40f),0,SizeUtil.dip2px(context,40f),0)
+            params.setMargins(SizeUtil.dip2px(context,20f),0,SizeUtil.dip2px(context,20f),0)
             viewPager.layoutParams=params
             viewPager.setPageTransformer(false,ScaleInTransformer())  //缩放和渐变效果
         }
         if(isAutoScroll){
-            handler.sendEmptyMessageDelayed(BANNER_NEXT,5000)  //自动轮播
+            handler.sendEmptyMessageDelayed(BANNER_NEXT,10000)  //自动轮播
         }
     }
 
@@ -68,7 +69,9 @@ class CustomViewPager @JvmOverloads constructor(context:Context,attributeSet: At
                 handler.sendEmptyMessage(BANNER_PAUSE)
             }
             ViewPager.SCROLL_STATE_IDLE->{
-                handler.sendEmptyMessageDelayed(BANNER_NEXT,5000)
+                if(isAutoScroll){
+                    handler.sendEmptyMessageDelayed(BANNER_NEXT,10000)  //自动轮播
+                }
             }
         }
     }
@@ -93,13 +96,13 @@ class CustomViewPager @JvmOverloads constructor(context:Context,attributeSet: At
                 customView.BANNER_NEXT->{
                     var curItem = customView.viewPager.currentItem
                     customView.viewPager.currentItem = ++curItem
-                    customView.handler.sendEmptyMessageDelayed(customView.BANNER_NEXT,5000)
+                    customView.handler.sendEmptyMessageDelayed(customView.BANNER_NEXT,10000)
                 }
                 customView.BANNER_PAUSE->{
                     return
                 }
                 customView.BANNER_RESUME->{
-                    customView.handler.sendEmptyMessageDelayed(customView.BANNER_NEXT,5000)
+                    customView.handler.sendEmptyMessageDelayed(customView.BANNER_NEXT,10000)
                 }
             }
         }

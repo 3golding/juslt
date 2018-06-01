@@ -10,8 +10,8 @@ import java.util.ArrayList
 /**
  * Created by wx on 2018/5/29.
  */
-class ViewPagerAdapter(private val mContext: Context, imgs: ArrayList<ImageView>) : PagerAdapter() {
-    private val imageList by lazy { ArrayList<ImageView>() }
+class ViewPagerAdapter(private val mContext: Context, imgs: ArrayList<View>) : PagerAdapter() {
+    private val imageList by lazy { ArrayList<View>() }
 
     init {
         imageList.addAll(imgs)
@@ -27,8 +27,8 @@ class ViewPagerAdapter(private val mContext: Context, imgs: ArrayList<ImageView>
         return Int.MAX_VALUE
     }
 
-    override fun isViewFromObject(view: View, `object`: Any): Boolean {
-        return view === `object`
+    override fun isViewFromObject(view: View, any: Any): Boolean {
+        return view == any
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
