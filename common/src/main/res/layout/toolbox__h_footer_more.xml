@@ -6,10 +6,11 @@
     <TextView
         android:id="@+id/tv_load"
         android:layout_centerInParent="true"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:textSize="16sp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:textSize="13sp"
         android:gravity="center"
+        android:textColor="#808080"
         android:text="load more ..."
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -18,7 +19,7 @@
         android:visibility="invisible"
         android:id="@+id/pb"
         android:layout_centerInParent="true"
-        android:layout_width="40dp"
-        android:layout_height="40dp" />
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
 
 </RelativeLayout>
