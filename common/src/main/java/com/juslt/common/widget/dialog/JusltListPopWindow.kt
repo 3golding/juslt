@@ -23,7 +23,7 @@ import org.jetbrains.anko.find
 class JusltListPopWindow(context: Context, width: Int, height: Int, attributeSet: AttributeSet? = null, def: Int = 0) : PopupWindow(context, attributeSet, def) {
     val adapter by lazy {
         PopListAdapter(UIEventInterface { event, index ->
-            callback!!.callback(event as String, index)
+            callback!!.callback(event as ItemInfo, index)
             dismiss()
         })
     }
@@ -42,7 +42,7 @@ class JusltListPopWindow(context: Context, width: Int, height: Int, attributeSet
         recyclerView.adapter = adapter
     }
 
-    fun updateList(dataList: ArrayList<String>, callback: Callback) {
+    fun updateList(dataList: ArrayList<ItemInfo>, callback: Callback) {
         adapter.update(dataList)
         this.callback = callback
     }
@@ -68,10 +68,10 @@ class JusltListPopWindow(context: Context, width: Int, height: Int, attributeSet
 
         val tvContent by lazy { itemView.find<TextView>(R.id.tv_content) }
         override fun update(obj: Any?, position: Int) {
-            val content = obj as String
-            tvContent.text = content
+            val data = obj as ItemInfo
+            tvContent.text = data.content
             tvContent.setOnClickListener {
-                mAdapter.event(content, position)
+                mAdapter.event(data, position)
             }
 
         }
@@ -81,6 +81,10 @@ class JusltListPopWindow(context: Context, width: Int, height: Int, attributeSet
     }
 
     interface Callback {
-        fun callback(content: String, pos: Int)
+        fun callback(data: ItemInfo, pos: Int)
     }
+    class ItemInfo(
+            val content: String,
+            val id:Int
+    )
 }
