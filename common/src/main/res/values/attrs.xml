@@ -12,4 +12,9 @@
         <attr name="is_show_back_icon" format="boolean"/>
         <attr name="background_color" format="color"/>
     </declare-styleable>
+
+    <declare-styleable name="CustomViewPager">
+        <attr name="is_have_transformer" format="boolean"/>
+        <attr name="is_auto_scroll" format="boolean"/>
+    </declare-styleable>
 </resources>
