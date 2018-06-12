@@ -5,6 +5,7 @@ import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.EditText
 import android.widget.TextView
 import com.juslt.common.R
@@ -16,6 +17,7 @@ import org.jetbrains.anko.find
 class JusltDialogEdit:DialogFragment(){
     var callback:Callback ?=null
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         return inflater!!.inflate(R.layout.dialog_edit,container,false)
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {

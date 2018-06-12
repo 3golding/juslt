@@ -5,6 +5,7 @@ import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.DatePicker
 import com.juslt.common.R
 import org.jetbrains.anko.find
@@ -22,6 +23,7 @@ class JusltDatePickerDialog : DialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         return inflater!!.inflate(R.layout.dialog_data_picker, null)
     }
 
