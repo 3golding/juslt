@@ -40,6 +40,9 @@ public class SysStatusBarUtil {
     }
     public static void setBarColor(Activity activity, int color){
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+            if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+                activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+            }
             Window window = activity.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
