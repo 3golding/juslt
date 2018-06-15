@@ -5,7 +5,6 @@ import android.graphics.drawable.ColorDrawable
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,7 +49,7 @@ class JusltListPopWindow(context: Context, width: Int, height: Int, attributeSet
     class PopListAdapter(uiEventInterface: UIEventInterface, loadMore: LoadMore? = null) : BaseRvFooterAdapter(uiEventInterface, loadMore) {
         override fun update(obj: Any?, hasMore: Boolean) {
             dataList.clear()
-            dataList.addAll(obj as Collection<Any>)
+            dataList.addAll(obj as Collection<*>)
             notifyByFooter(hasMore)
         }
 
