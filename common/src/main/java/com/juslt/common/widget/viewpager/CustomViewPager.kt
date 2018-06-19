@@ -8,13 +8,10 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.LinearLayout
 import com.juslt.common.R
 import com.juslt.common.utils.SizeUtil
 import org.jetbrains.anko.find
 import java.lang.ref.WeakReference
-import java.util.jar.Attributes
 
 /**
  * Created by wx on 2018/5/30.
@@ -72,6 +69,7 @@ class CustomViewPager @JvmOverloads constructor(context:Context,attributeSet: At
                 if(isAutoScroll){
                     handler.sendEmptyMessageDelayed(BANNER_NEXT,10000)  //自动轮播
                 }
+                viewPager.invalidate()
             }
         }
     }
@@ -81,6 +79,7 @@ class CustomViewPager @JvmOverloads constructor(context:Context,attributeSet: At
     }
 
     override fun onPageSelected(position: Int) {
+
     }
 
     class PagerHandler(val weakReference: WeakReference<CustomViewPager>):Handler(){
