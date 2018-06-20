@@ -34,4 +34,14 @@ object PhoneUtil{
         return false
     }
 
+    //隐藏中间四位的手机号
+    fun getEncryptPhone(phone:String) :String{
+        if(phone.length==11){
+            val prefix = phone.substring(0,3)
+            val suffix = phone.substring(7,11)
+            return "$prefix****$suffix"
+        }
+        return phone
+    }
+
 }
