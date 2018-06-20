@@ -86,7 +86,7 @@ class CustomViewPager @JvmOverloads constructor(context:Context,attributeSet: At
 
         override fun handleMessage(msg: Message?) {
             super.handleMessage(msg)
-            var customView: CustomViewPager? = weakReference.get() ?: return
+            val customView: CustomViewPager? = weakReference.get() ?: return
 
             if(customView!!.handler.hasMessages(customView.BANNER_NEXT)){
                 customView.handler.removeMessages(customView.BANNER_NEXT)
