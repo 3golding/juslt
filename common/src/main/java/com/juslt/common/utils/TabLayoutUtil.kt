@@ -9,7 +9,7 @@ import java.lang.reflect.Field
 /**
  * Created by Administrator on 2018/6/4.
  */
-class TabLayoutUtil{
+class TabLayoutUtil {
     companion object {
         fun setIndicator(tabs: TabLayout, leftDip: Int, rightDip: Int) {
             val tabLayout = tabs.javaClass
@@ -34,7 +34,7 @@ class TabLayoutUtil{
             for (i in 0 until llTab!!.childCount) {
                 val child = llTab.getChildAt(i)
                 child.setPadding(0, 0, 0, 0)
-                val params = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1.toFloat())
+                val params = LinearLayout.LayoutParams( LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT)
                 params.leftMargin = left.toInt()
                 params.rightMargin = right.toInt()
                 child.layoutParams = params
