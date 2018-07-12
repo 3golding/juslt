@@ -41,9 +41,10 @@ class JusltConfirmDialog : DialogFragment() {
         view!!.findViewById<TextView>(R.id.tv_title).text = title
         view!!.findViewById<TextView>(R.id.tv_content).text=content
         view!!.findViewById<TextView>(R.id.tv_cancel).setOnClickListener {
-            dismiss()
+            dismissAllowingStateLoss()
         }
         view!!.findViewById<TextView>(R.id.tv_confirm).setOnClickListener {
+            dismissAllowingStateLoss()
             callbacks!!.confirm()
         }
     }
