@@ -25,6 +25,7 @@ fun Request.readResponse(conn: HttpURLConnection) : Response{
     var resultStr: String?=null
     var readSuccess = true
     try {
+        val i=false
         //todo 处理gzip
         dataStream = conn.errorStream?:conn.inputStream?:ByteArrayInputStream(ByteArray(0))
         resultStr = if(downloadPath==null){
