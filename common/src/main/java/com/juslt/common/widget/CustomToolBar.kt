@@ -70,6 +70,9 @@ class CustomToolBar @JvmOverloads constructor(context: Context, attrs: Attribute
     fun setTitleText(title:String){
         tvTitle.text = title
     }
+    fun setRightText(rtext:String){
+        tvRightText.text = rtext
+    }
     fun setBackListener(listener: OnClickListener) {
         ivBack.setOnClickListener(listener)
     }
