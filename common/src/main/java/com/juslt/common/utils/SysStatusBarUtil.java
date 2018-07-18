@@ -60,8 +60,8 @@ public class SysStatusBarUtil {
     //系统栏字体为深色
     public static void setDarkBar(Activity activity){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             setBarColor(activity, ContextCompat.getColor(activity, R.color.color_white));
+            activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }else {
             setBarColor(activity, ContextCompat.getColor(activity,R.color.blue));
         }
