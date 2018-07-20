@@ -11,6 +11,7 @@
         <attr name="is_show_divider" format="boolean"/>
         <attr name="is_show_back_icon" format="boolean"/>
         <attr name="background_color" format="color"/>
+        <attr name="is_dark_status_bar" format="boolean"/>
     </declare-styleable>
 
     <declare-styleable name="CustomViewPager">
