@@ -11,7 +11,11 @@
         <attr name="is_show_divider" format="boolean"/>
         <attr name="is_show_back_icon" format="boolean"/>
         <attr name="background_color" format="color"/>
+
+        <!--6.0系统设置深色的状态栏（白色背景黑色字体）-->
         <attr name="is_dark_status_bar" format="boolean"/>
+        <!--设置toolbar 是否使用沉浸式状态栏-->
+        <attr name="is_immersion_status_bar" format="boolean"/>
     </declare-styleable>
 
     <declare-styleable name="CustomViewPager">
