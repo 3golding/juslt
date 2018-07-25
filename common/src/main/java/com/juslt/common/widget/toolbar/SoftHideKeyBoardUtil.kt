@@ -1,10 +1,13 @@
 package com.juslt.common.widget.toolbar
 
 import android.app.Activity
+import android.content.Context
 import android.graphics.Rect
 import android.os.Build
 import android.view.View
 import android.widget.FrameLayout
+import com.juslt.common.utils.SizeUtil
+import com.juslt.common.utils.SysStatusBarUtil
 import org.jetbrains.anko.find
 
 
@@ -21,9 +24,10 @@ class SoftHideKeyBoardUtil private constructor(activity: Activity) {
     //为适应华为小米等手机键盘上方出现黑条或不适配
     private var contentHeight: Int = 0//获取setContentView本来view的高度
     private var isfirst = true//只用获取一次
-    private val statusBarHeight: Int = 0//状态栏高度
-
+    private var statusBarHeight: Int = 0//状态栏高度
+    private lateinit var mActivity :Activity
     init {
+        mActivity = activity
         //1､找到Activity的最外层布局控件，它其实是一个DecorView,它所用的控件就是FrameLayout
         val content = activity.find<FrameLayout>(android.R.id.content)
         //2､获取到setContentView放进去的View
@@ -55,7 +59,9 @@ class SoftHideKeyBoardUtil private constructor(activity: Activity) {
             if (heightDifference > usableHeightSansKeyboard / 4) {
                 // 6､键盘弹出了，Activity的xml布局高度应当减去键盘高度
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    statusBarHeight = getStatusBarHeight(mActivity)
                     frameLayoutParams.height = usableHeightSansKeyboard - heightDifference + statusBarHeight
+//                    frameLayoutParams.height = usableHeightSansKeyboard - heightDifference
                 } else {
                     frameLayoutParams.height = usableHeightSansKeyboard - heightDifference
                 }
@@ -73,6 +79,11 @@ class SoftHideKeyBoardUtil private constructor(activity: Activity) {
         mChildOfContent.getWindowVisibleDisplayFrame(r)
         // 全屏模式下：直接返回r.bottom，r.top其实是状态栏的高度
         return r.bottom - r.top
+    }
+
+    fun getStatusBarHeight(context: Context): Int {
+        val resourceId = context.resources.getIdentifier("status_bar_height", "dimen", "android")
+        return context.resources.getDimensionPixelSize(resourceId)
     }
 
     companion object {
