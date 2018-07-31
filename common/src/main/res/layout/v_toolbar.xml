@@ -13,12 +13,12 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp">
+        android:layout_height="44dp">
 
         <ImageView
             android:id="@+id/iv_back"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
             android:gravity="center"
             android:scaleType="center"
             android:src="@mipmap/ic_back" />
@@ -37,14 +37,14 @@
         <LinearLayout
             android:id="@+id/ll_right"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="44dp"
             android:layout_gravity="right"
             android:paddingRight="20dp">
 
             <TextView
                 android:id="@+id/tv_right_text"
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
+                android:layout_height="44dp"
                 android:gravity="center"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
