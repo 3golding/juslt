@@ -52,7 +52,7 @@ class CustomViewPager @JvmOverloads constructor(context:Context,attributeSet: At
             val params = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,FrameLayout.LayoutParams.WRAP_CONTENT)
             params.setMargins(SizeUtil.dip2px(context,20f),0,SizeUtil.dip2px(context,20f),0)
             viewPager.layoutParams=params
-            viewPager.setPageTransformer(false,ScaleInTransformer())  //缩放和渐变效果
+            viewPager.setPageTransformer(false,DepthPageTransformer())  //缩放和渐变效果
         }
         if(isAutoScroll){
             handler.sendEmptyMessageDelayed(BANNER_NEXT,10000)  //自动轮播
