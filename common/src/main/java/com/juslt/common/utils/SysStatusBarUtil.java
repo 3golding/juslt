@@ -44,6 +44,12 @@ public class SysStatusBarUtil {
 //        }
 
     }
+    //设置状态栏白字字体
+    public static void setWhiteFontBar(Activity activity){
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+            activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        }
+    }
 
     //隐藏系统状态栏和底部导航栏
     public static void hideSystemUI(Activity activity){
