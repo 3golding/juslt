@@ -29,7 +29,7 @@ object PwdCheckUtil {
     }
 
     /**
-     * 规则2：至少包含大小写字母及数字中的两种
+     * 规则2：至少包含大小写字母,、数字、下划线中的两种
      * 是否包含
      *
      * @param str
@@ -38,15 +38,20 @@ object PwdCheckUtil {
     fun isLetterDigit(str: String): Boolean {
         var isDigit = false//定义一个boolean值，用来表示是否包含数字
         var isLetter = false//定义一个boolean值，用来表示是否包含字母
+        var isUnderLine = false
         for (i in 0 until str.length) {
             if (Character.isDigit(str[i])) {   //用char包装类中的判断数字的方法判断每一个字符
                 isDigit = true
             } else if (Character.isLetter(str[i])) {  //用char包装类中的判断字母的方法判断每一个字符
                 isLetter = true
+            } else if (str[i].toString() == "_") {
+                isUnderLine = true
             }
         }
-        val regex = "^[a-zA-Z0-9]+$"
+        val regex = "^[a-zA-Z0-9_]+$"
         return isDigit && isLetter && str.matches(regex.toRegex())
+                || isDigit && isUnderLine && str.matches(regex.toRegex())
+                || isLetter && isUnderLine && str.matches(regex.toRegex())
     }
 
     /**
@@ -69,7 +74,7 @@ object PwdCheckUtil {
                 isUpperCase = true
             }
         }
-        val regex = "^[a-zA-Z0-9]+$"
+        val regex = "^[a-zA-Z0-9_]+$"
         return isDigit && isLowerCase && isUpperCase && str.matches(regex.toRegex())
     }
 
