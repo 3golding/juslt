@@ -48,7 +48,7 @@ object PwdCheckUtil {
                 isUnderLine = true
             }
         }
-        val regex = "^[a-zA-Z0-9_]+$"
+        val regex = "^[a-zA-Z0-9_-]+$"
         return isDigit && isLetter && str.matches(regex.toRegex())
                 || isDigit && isUnderLine && str.matches(regex.toRegex())
                 || isLetter && isUnderLine && str.matches(regex.toRegex())
