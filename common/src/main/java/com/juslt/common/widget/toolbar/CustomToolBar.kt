@@ -99,6 +99,9 @@ class CustomToolBar @JvmOverloads constructor(context: Context, attrs: Attribute
     fun setRightOptionListener(listener:OnClickListener){
         llRightContainer.setOnClickListener(listener )
     }
+    fun invisibleRightIcon(){
+        ivRight.visibility = View.GONE
+    }
 
     fun getStatusBarHeight():Int{
         var statusBarHeight = 0
