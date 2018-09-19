@@ -17,35 +17,46 @@ import java.lang.ref.WeakReference
  * Created by wx on 2018/5/30.
  */
 class CustomViewPager @JvmOverloads constructor(context:Context,attributeSet: AttributeSet?=null,defAttr:Int=0):FrameLayout(context,attributeSet,defAttr),ViewPager.OnPageChangeListener{
-    val BANNER_NEXT=100
-    val BANNER_PAUSE=200
-    val BANNER_RESUME=300
+    private val BANNER_NEXT=100
+    private val BANNER_PAUSE=200
+    private val BANNER_RESUME=300
 
-    val imageList = ArrayList<View>()
     val viewPager by lazy { this.find<ViewPager>(R.id.view_pager) }
     val indicator by lazy { this.find<ViewPagerIndicator>(R.id.indicator) }
+
+
+    private var isAutoScroll =false
+    private var isHaveTransformer =false
+
     val handler by lazy { PagerHandler(WeakReference(this)) }
-    var isAutoScroll =false
-    var isHaveTransformer =false
+
+    private val imageList = ArrayList<View>()
+
     init {
         LayoutInflater.from(context).inflate(R.layout.v_viewpager,this)
+
         //xml自定义属性
         val typeArray = context.obtainStyledAttributes(attributeSet,R.styleable.CustomViewPager)
         isAutoScroll=typeArray.getBoolean(R.styleable.CustomViewPager_is_auto_scroll,false)
         isHaveTransformer=typeArray.getBoolean(R.styleable.CustomViewPager_is_have_transformer,false)
+
     }
+
     fun update(any: Any){
         imageList.clear()
         imageList.addAll(any as ArrayList<View>)
-        if(imageList.size>1){
-            indicator.removeAllViews()
-            indicator.initPointNum(imageList.size)
-        }
 
         viewPager.adapter=ViewPagerAdapter(context,imageList)
         viewPager.setOnPageChangeListener(this)
-        viewPager.currentItem = Int.MAX_VALUE/2
-        indicator.setSelected((Int.MAX_VALUE/2)%imageList.size)
+
+        if(imageList.size>1){
+            indicator.removeAllViews()
+            indicator.initPointNum(imageList.size)
+            indicator.setSelected((Int.MAX_VALUE/2)%imageList.size)
+
+            viewPager.currentItem = Int.MAX_VALUE/2
+        }
+
 
         if(isHaveTransformer){
             viewPager.pageMargin= SizeUtil.dip2px(context,0f) //设置page间间距
@@ -54,6 +65,7 @@ class CustomViewPager @JvmOverloads constructor(context:Context,attributeSet: At
             viewPager.layoutParams=params
             viewPager.setPageTransformer(false,DepthPageTransformer())  //缩放和渐变效果
         }
+
         if(isAutoScroll){
             handler.sendEmptyMessageDelayed(BANNER_NEXT,10000)  //自动轮播
         }
@@ -82,7 +94,7 @@ class CustomViewPager @JvmOverloads constructor(context:Context,attributeSet: At
 
     }
 
-    class PagerHandler(val weakReference: WeakReference<CustomViewPager>):Handler(){
+    class PagerHandler(private val weakReference: WeakReference<CustomViewPager>):Handler(){
 
         override fun handleMessage(msg: Message?) {
             super.handleMessage(msg)

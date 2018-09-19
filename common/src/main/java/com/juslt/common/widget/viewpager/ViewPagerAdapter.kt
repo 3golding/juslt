@@ -15,15 +15,12 @@ class ViewPagerAdapter(private val mContext: Context, imgs: ArrayList<View>) : P
 
     init {
         imageList.addAll(imgs)
-//        for (res in imgs) {
-//            val imageView = ImageView(mContext)
-//            imageView.setImageResource()
-//            imageView.scaleType = ImageView.ScaleType.CENTER_CROP
-//            imageList.add(imageView)
-//        }
     }
 
     override fun getCount(): Int {
+        if(imageList.size==1){
+            return 1
+        }
         return Int.MAX_VALUE
     }
 
