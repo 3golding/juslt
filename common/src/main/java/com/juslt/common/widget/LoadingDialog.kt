@@ -1,50 +1,60 @@
 package com.juslt.common.widget
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.os.Bundle
-import android.support.v7.app.AppCompatDialogFragment
-import android.util.DisplayMetrics
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.animation.AnimationUtils
-import android.view.animation.LinearInterpolator
+import android.app.Dialog
+import android.content.Context
+import android.graphics.drawable.AnimationDrawable
+import android.view.Gravity
 import android.widget.ImageView
 import com.juslt.common.R
+import org.jetbrains.anko.find
 
+/*
+    加载对话框封装
+ */
+class LoadingDialog private constructor(context: Context, theme: Int) : Dialog(context, theme) {
 
-class LoadingDialog : AppCompatDialogFragment() {
-    private var loadingIv: ImageView? = null
+    companion object {
+        private lateinit var mDialog: LoadingDialog
+        private var animDrawable: AnimationDrawable? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.pop_loading, container, false)
+        /*
+            创建加载对话框
+         */
+        fun create(context: Context):LoadingDialog {
+            //样式引入
+            mDialog = LoadingDialog(context, R.style.LightProgressDialog)
+            //设置布局
+            mDialog.setContentView(R.layout.progress_dialog)
+            mDialog.setCancelable(true)
+            mDialog.setCanceledOnTouchOutside(false)
+            mDialog.window.attributes.gravity = Gravity.CENTER
+
+            val lp = mDialog.window.attributes
+            lp.dimAmount = 0.2f
+            //设置属性
+            mDialog.window.attributes = lp
+
+            //获取动画视图
+            val loadingView = mDialog.find<ImageView>(R.id.iv_loading)
+            animDrawable = loadingView.background as AnimationDrawable
+
+            return mDialog
+        }
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        loadingIv = view!!.findViewById<View>(R.id.iv_loading) as ImageView
-
-        val animation = AnimationUtils.loadAnimation(activity, R.anim.loading_rotate)
-        val lInterpolator = LinearInterpolator()
-        animation.interpolator = lInterpolator
-        loadingIv!!.animation = animation
+    /*
+        显示加载对话框，动画开始
+     */
+    fun showLoading() {
+        super.show()
+        animDrawable?.start()
     }
 
-    override fun onStart() {
-        super.onStart()
-        val dialog = dialog
-
-        dialog.setCanceledOnTouchOutside(false)//设置点击Dialog外部任意区域关闭Dialog
-
-        val dm = DisplayMetrics()
-        activity.windowManager.defaultDisplay.getMetrics(dm)
-        dialog.window!!.setLayout((dm.widthPixels * 0.2).toInt(), (dm.widthPixels * 0.2).toInt())
-
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        val params = dialog.window!!.attributes
-        params.dimAmount = 0f
-        dialog.window!!.attributes = params
-
+    /*
+        隐藏加载对话框，动画停止
+     */
+    fun hideLoading(){
+        super.dismiss()
+        animDrawable?.stop()
     }
 }
