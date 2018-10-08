@@ -1,4 +1,4 @@
-package com.juslt.common.widget
+package com.juslt.common.widget.dialog
 
 import android.content.Context
 import android.support.design.widget.BottomSheetDialog
@@ -9,7 +9,7 @@ import com.juslt.common.R
 /**
  * Created by wx on 2018/5/30.
  */
-class SelectImageBottomSheet(context: Context,val callback:Callback):BottomSheetDialog(context){
+class SelectImageBottomSheet(context: Context,val callback: Callback):BottomSheetDialog(context){
     init {
         val view = LayoutInflater.from(context).inflate(R.layout.dialog_select_image,null)
         setContentView(view)
