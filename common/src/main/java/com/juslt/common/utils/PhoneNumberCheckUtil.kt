@@ -7,7 +7,7 @@ import java.util.regex.Pattern
 /**
  * Created by wx on 2018/6/13.
  */
-object PhoneNumberUtil{
+object PhoneNumberCheckUtil{
     /**
      * 判断手机号是否符合规范
      * @param phoneNo 输入的手机号

@@ -1,9 +1,8 @@
-package com.juslt.common.utils
+package com.juslt.common.widget.toolbar
 
 import android.graphics.Rect
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
 
 /**
  * Created by juslt on 2018/8/10.

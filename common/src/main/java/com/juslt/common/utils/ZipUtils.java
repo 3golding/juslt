@@ -105,6 +105,7 @@ public class ZipUtils {
         return compressedBitmap;
     }
 
+    //对图片进行质量压缩
     public static byte[] compressImage(Bitmap image) {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -163,7 +164,7 @@ public class ZipUtils {
     public static String compImageFile(String fromFile) {
         Bitmap bitmap = BitmapFactory.decodeFile(fromFile);
         byte[] bytes = ZipUtils.comp(bitmap);
-        BitmapUtil.saveBitmap2file(bytes, fromFile);
+        SaveBitmapUtil.saveBytes2file(bytes, fromFile);
         return fromFile;
     }
 }

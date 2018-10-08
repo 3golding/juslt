@@ -4,7 +4,7 @@ import java.util.*
 
 
 
-object SystemUtil{
+object SystemInfoUtil{
     /**
      * 获取当前手机系统语言。
      *

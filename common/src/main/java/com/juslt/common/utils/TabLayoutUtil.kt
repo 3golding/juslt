@@ -11,6 +11,8 @@ import java.lang.reflect.Field
  */
 class TabLayoutUtil {
     companion object {
+
+        //改变TabLayout的child宽度
         fun setIndicator(tabs: TabLayout, leftDip: Int, rightDip: Int) {
             val tabLayout = tabs.javaClass
             var tabStrip: Field? = null
@@ -40,8 +42,6 @@ class TabLayoutUtil {
                 child.layoutParams = params
                 child.invalidate()
             }
-
-
         }
 
     }

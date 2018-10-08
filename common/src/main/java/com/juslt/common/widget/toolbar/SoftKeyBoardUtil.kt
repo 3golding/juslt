@@ -6,8 +6,6 @@ import android.graphics.Rect
 import android.os.Build
 import android.view.View
 import android.widget.FrameLayout
-import com.juslt.common.utils.SizeUtil
-import com.juslt.common.utils.SysStatusBarUtil
 import org.jetbrains.anko.find
 
 
@@ -17,7 +15,7 @@ import org.jetbrains.anko.find
  * Created by juslt on 2018/7/23.
  */
 
-class SoftHideKeyBoardUtil private constructor(activity: Activity) {
+class SoftKeyBoardUtil private constructor(activity: Activity) {
     private val mChildOfContent: View
     private var usableHeightPrevious: Int = 0
     private val frameLayoutParams: FrameLayout.LayoutParams
@@ -88,7 +86,7 @@ class SoftHideKeyBoardUtil private constructor(activity: Activity) {
 
     companion object {
         fun assistActivity(activity: Activity) {
-            SoftHideKeyBoardUtil(activity)
+            SoftKeyBoardUtil(activity)
         }
     }
 }

@@ -63,6 +63,7 @@ public class SysStatusBarUtil {
             activity.getWindow().getDecorView().setSystemUiVisibility(uiOptions);
         }
     }
+
     //显示系统状态栏和底部导航栏
     public static void showSystemUI(Activity activity){
         int uiOptions = View.SYSTEM_UI_FLAG_VISIBLE

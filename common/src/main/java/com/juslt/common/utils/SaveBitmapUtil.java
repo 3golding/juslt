@@ -12,9 +12,9 @@ import java.io.OutputStream;
  * Created by zl on 2017/5/19.
  */
 
-public class BitmapUtil {
+public class SaveBitmapUtil {
 
-    public static void saveBitmap2file(byte[] buf, String filePath) {
+    public static void saveBytes2file(byte[] buf, String filePath) {
         BufferedOutputStream bos = null;
         FileOutputStream fos = null;
         File file = null;
@@ -90,7 +90,6 @@ public class BitmapUtil {
                 }
             }
         }
-
         return false;
     }
 }

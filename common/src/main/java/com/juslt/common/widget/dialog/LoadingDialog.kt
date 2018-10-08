@@ -1,4 +1,4 @@
-package com.juslt.common.widget
+package com.juslt.common.widget.dialog
 
 import android.app.Dialog
 import android.content.Context
@@ -18,9 +18,9 @@ class LoadingDialog private constructor(context: Context, theme: Int) : Dialog(c
         private var animDrawable: AnimationDrawable? = null
 
         /*
-            创建加载对话框
+          创建加载对话框
          */
-        fun create(context: Context):LoadingDialog {
+        fun create(context: Context): LoadingDialog {
             //样式引入
             mDialog = LoadingDialog(context, R.style.LightProgressDialog)
             //设置布局
